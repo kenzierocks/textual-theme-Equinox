@@ -5,7 +5,7 @@
 
 /* Theme-wide preferences, as per milky's request */
 var Equinox = {
-  fadeNicks: true,            // fade out nicknames when they appear multiple times in a row
+  fadeNicks: false,            // fade out nicknames when they appear multiple times in a row
   fadeNicksFreq: 10,          // how frequently to display a nick if they have fadeNickCounts lines in a row
   showDateChanges: true,      // show date changes
   squashModes: true,          // if a duplicate mode gets posted to the channel, squash it
@@ -257,7 +257,7 @@ Textual.newMessagePostedToView = function (line) {
   // if it's a private message, colorize the nick and then track the state and fade away the nicks if needed
   if (message.getAttribute('ltype') === 'privmsg' || message.getAttribute('ltype') === 'action') {
     sender = message.getElementsByClassName('sender')[0];
-    new NickColorGenerator(message); // colorized the nick
+    //new NickColorGenerator(message); // colorized the nick
 
     // Delete (ie, make foreground and background color identical) the previous line's nick, if it was set to be deleted
     if (rs.nick.delete === true) {
