@@ -67,7 +67,7 @@ var NickColorGenerator = (function () {
   NickColorGenerator.prototype.generateColorFromNickname = function (nick) {
     // First, sanitize the nicknames
     nick = nick.toLowerCase();          // make them lowercase (so that April and april produce the same color)
-    nick = nick.replace(/[`_-]+$/, ''); // typically `, _, and - are used on the end of a nick
+    nick = nick.replace(/[`_\-]+$/, ''); // typically `, _, and - are used on the end of a nick
     nick = nick.replace(/|.*$/, '');    // remove |<anything> from the end
 
     // Generate the hashes
@@ -420,35 +420,38 @@ Textual.viewBodyDidLoad = function () {
   }, 500);
 };
 
-Textual.viewInitiated = function () {
-  'use strict';
+// Textual.viewInitiated = function () {
+//   'use strict';
 
-  /* When the view is loaded, create a hidden history div which we display if there is scrollback */
-  var body = document.getElementById('body_home'), div = document.createElement('div');
-  div.id = 'scrolling_history';
-  document.getElementsByTagName('body')[0].appendChild(div);
-  rs.history = div;
+//   /* When the view is loaded, create a hidden history div which we display if there is scrollback */
+//   var body = document.getElementById('body_home');
 
-  /* setup the scrolling event to display the hidden history if the bottom element isn't in the viewport
-     also hide the topic bar when scrolling */
-  window.onscroll = function () {
-    var line, lines;
-    var topic = document.getElementById('topic_bar');
+//   // KILLLLLLLLL
+//   //div = document.createElement('div');
+//   //div.id = 'scrolling_history';
+//   //document.getElementsByTagName('body')[0].appendChild(div);
+//   //rs.history = div;
 
-    lines = body.getElementsByClassName('line');
-    if (lines.length < 2) {
-      return;
-    }
-    line = lines[lines.length - 1];
+//   /* setup the scrolling event to display the hidden history if the bottom element isn't in the viewport
+//      also hide the topic bar when scrolling */
+//   // window.onscroll = function () {
+//   //   var line, lines;
+//   //   var topic = document.getElementById('topic_bar');
 
-    if (isMessageInViewport(line) === false) {
-      // scrollback
-      rs.history.style.display = 'inline';
-      if (topic) { topic.style.visibility = 'hidden'; }
-    } else {
-      // at the bottom
-      rs.history.style.display = 'none';
-      if (topic) { topic.style.visibility = 'visible'; }
-    }
-  };
-};
+//   //   lines = body.getElementsByClassName('line');
+//   //   if (lines.length < 2) {
+//   //     return;
+//   //   }
+//   //   line = lines[lines.length - 1];
+
+//   //   if (isMessageInViewport(line) === false) {
+//   //     // scrollback
+//   //     rs.history.style.display = 'inline';
+//   //     if (topic) { topic.style.visibility = 'hidden'; }
+//   //   } else {
+//   //     // at the bottom
+//   //     rs.history.style.display = 'none';
+//   //     if (topic) { topic.style.visibility = 'visible'; }
+//   //   }
+//   // };
+// };
